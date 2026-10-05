@@ -1,0 +1,26 @@
+services:
+  backend:
+    build: ..
+    restart: unless-stopped
+    environment:
+      DATABASE_PATH: /data/calculator.db
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}
+    volumes:
+      - calculator_data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  frontend:
+    build: ../../calculator_frontend
+    restart: unless-stopped
+    ports:
+      - "${HTTP_BIND:-0.0.0.0}:${HTTP_PORT:-80}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  calculator_data:
