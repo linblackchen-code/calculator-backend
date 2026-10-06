@@ -1,4 +1,6 @@
-# 两个独立仓库的 Docker 部署
+# 两个独立仓库的部署
+
+当前阿里云 ECS 实际采用 Ubuntu 原生部署（Nginx + systemd + Python 虚拟环境），操作说明见 [ubuntu/README.md](ubuntu/README.md)。下面的 Docker 配置仍可用于能访问 Docker Hub 的服务器。
 
 将前端和后端分别克隆或下载到同一父目录，目录名保持如下：
 
@@ -44,3 +46,4 @@ docker compose -f compose.yaml -f compose.https.yaml up -d --build
 Caddy 自动申请 HTTPS 证书；启用后使用相同的两个 `-f` 参数管理服务。
 
 此配置已准备，但尚未在公网服务器构建验收。部署后需要实际测试计算、历史保留、删除、收藏和 CSV 导出，并在博客填写真实访问地址。
+
