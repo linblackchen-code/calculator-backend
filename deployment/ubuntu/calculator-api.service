@@ -1,0 +1,18 @@
+[Unit]
+Description=Calculator API
+After=network.target
+
+[Service]
+Type=simple
+User=ecs-user
+Group=ecs-user
+WorkingDirectory=/home/ecs-user/calculator/calculator_backend
+Environment=DATABASE_PATH=/var/lib/calculator/calculator.db
+ExecStart=/home/ecs-user/calculator/calculator_backend/.venv/bin/uvicorn src.main:app --host 127.0.0.1 --port 8000
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
+
