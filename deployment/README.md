@@ -45,5 +45,5 @@ docker compose -f compose.yaml -f compose.https.yaml up -d --build
 
 Caddy 自动申请 HTTPS 证书；启用后使用相同的两个 `-f` 参数管理服务。
 
-此配置已准备，但尚未在公网服务器构建验收。部署后需要实际测试计算、历史保留、删除、收藏和 CSV 导出，并在博客填写真实访问地址。
+此 Docker 配置已准备，但当前 ECS 因无法连接 Docker Hub，未实际构建容器。网站已改用 [Ubuntu 原生部署](ubuntu/README.md)，公网地址为 <http://47.114.63.69/>；计算、历史、删除、收藏和 CSV 导出已通过实际接口验收。博客应填写该真实访问地址。
 
