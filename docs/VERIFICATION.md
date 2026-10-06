@@ -28,9 +28,17 @@
 - 本地旧库的两条原有历史仍保留，自动增加收藏字段。
 - 新增主题及收藏演示截图 17–19；CSV 下载文件供验证使用，保存在 `.runtime`。
 
+## 2026-10-06 公网部署验收
+
+- 阿里云 ECS 使用 Ubuntu 24.04、Nginx、systemd 和 Python 虚拟环境；SQLite 数据库位于 `/var/lib/calculator/calculator.db`。
+- 从本机访问 <http://47.114.63.69/> 返回 HTTP 200，计算器页面可以打开；访问 <http://47.114.63.69/api/health> 返回 `{"success":true,"status":"ok"}`。
+- 通过 Nginx 代理的真实 API 验证 `(12+8)*3` 得到 `60`，并验证历史查询、收藏、CSV 导出和指定删除；验收时创建的记录已删除。
+- `nginx` 和 `calculator-api` 两个 systemd 服务均处于 active。公网入方向 TCP 80 已放行。
+
 ## 尚未验证
 
-- 本机没有 Docker，尚未实际构建和运行 Linux 容器。
-- 没有目标公网服务器，尚未验证公网地址、云平台网络规则和 HTTPS 证书。
+- 当前 ECS 无法连接 Docker Hub，尚未实际构建和运行 Docker 方案；公网运行的是 Ubuntu 原生方案。
+- 尚未配置域名和 HTTPS 证书；当前可通过 HTTP 公网地址访问。
 
-当前只能确认本地实现及部署文件准备完成；公网部署需要在服务器上完成构建与外网验收。
+上述公网验收只证明当时的运行状态；后续修改本地或 GitHub 代码不会自动更新 ECS，需要重新上传部署。
+
