@@ -96,6 +96,7 @@ CREATE TABLE calculation_history (
 
 ## 部署与后续范围
 
-Windows：两个独立服务在 8080/8000 通过 CORS 通信。Linux Docker：Nginx 与后端通过内部网络通信，数据库使用持久卷；可选 Caddy 提供域名 HTTPS。
+Windows 本地：两个独立服务在 8080/8000 通过 CORS 通信。当前阿里云 Ubuntu ECS：Nginx 提供静态前端并代理 `/api/` 到 `127.0.0.1:8000` 的 systemd 后端，SQLite 数据库存于 `/var/lib/calculator/calculator.db`。仓库还保留 Linux Docker Compose 方案与可选 Caddy HTTPS 配置，但当前公网实例未使用容器或 HTTPS。
 
-当前历史是全应用共享记录，未实现账户和用户隔离；没有科学函数或单位换算。PSP、个人心得、仓库链接和公网访问地址需在实际开发与部署后填写。
+当前历史是全应用共享记录，未实现账户和用户隔离；没有科学函数或单位换算。PSP 估计与实际用时、个人心得和不少于 10 张配有说明的功能截图，应由作者根据真实开发过程写入作业博客；博客还应提供两个仓库、两份代码规范的链接和公网访问地址。
+
