@@ -2,6 +2,8 @@
 
 FastAPI + Python Decimal + SQLite。接收表达式，在后端校验、解析和计算；成功后保存记录，提供历史查询和指定删除接口。
 
+公网演示：<http://47.114.63.69/>；前端源码见 [calculator-frontend](https://github.com/linblackchen-code/calculator-frontend)。公网环境使用 Ubuntu Nginx + systemd + Python 虚拟环境，部署和更新步骤见 [Ubuntu 部署说明](deployment/ubuntu/README.md)。
+
 ## 环境与安装
 
 Python 3.10+，建议 Python 3.13。在本仓库目录执行：
@@ -81,4 +83,5 @@ Linux/macOS 使用 `.venv/bin/python` 替换上述解释器路径。
 
 `Dockerfile` 提供非 root 运行镜像。数据库路径为 `/data/calculator.db`，应挂载持久卷。使用完整项目的 Compose 配置可同时部署前后端和数据卷。
 
-本仓库也包含独立的 [部署配置与说明](deployment/README.md)。将前端下载到同级 `calculator_frontend` 后，在 `deployment` 目录启动 Compose 即可组合运行两个仓库。系统设计见 [架构说明](docs/ARCHITECTURE.md)。
+本仓库也保留了 [Docker Compose 配置与说明](deployment/README.md)。能访问 Docker Hub 的服务器可将前端下载到同级 `calculator_frontend` 后，在 `deployment` 目录启动 Compose。当前阿里云 ECS 实际采用上述 Ubuntu 原生部署。系统设计见 [架构说明](docs/ARCHITECTURE.md)，测试和公网验收见 [验证记录](docs/VERIFICATION.md)。
+
